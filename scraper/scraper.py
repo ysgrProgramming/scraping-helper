@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from dataclasses import dataclass
+from time import sleep
 
 
 @dataclass
@@ -24,10 +25,11 @@ class Scraper:
         options.add_argument("--incognito")
         self.driver = webdriver.Chrome(options=options)
 
-    def safe_get(driver, url, retries=3, timeout=30):
+    def safe_get(self, driver, url, retries=3, timeout=30):
         """
         driver.get(url) をWebDriverWaitとリトライ処理で実行する関数
         """
+        sleep(datetime.now() - self.last_fetch_date - self.fetch_interval)
         for attempt in range(1, retries + 1):
             try:
                 driver.set_page_load_timeout(timeout)
