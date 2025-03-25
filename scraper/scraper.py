@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import os
 import time
 from datetime import datetime, timedelta
 from selenium import webdriver
@@ -8,15 +7,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from dataclasses import dataclass
-
-
-# --- セキュリティ向上: Slack Webhook URL は環境変数から取得する ---
-SLACK_WEBHOOK_URL = os.getenv("SLACK_WEBHOOK_URL")
-if not SLACK_WEBHOOK_URL:
-    raise ValueError("SLACK_WEBHOOK_URL environment variable is not set")
-
-BASE_URL = "https://www.winticket.jp"
-DATA_DIR = "datas"
 
 
 @dataclass
