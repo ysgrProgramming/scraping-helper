@@ -15,3 +15,9 @@ dynamic = ["version"]
 [tool.setuptools.packages.find]
 exclude = ["tests"]
 
+[tool.ruff]
+select = ["ALL"]
+ignore = ["T20", "D", "TC", "N", "DTZ"]
+
+[tool.ruff.pydocstyle]
+convention = "google"

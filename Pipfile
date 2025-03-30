@@ -9,7 +9,7 @@ bs4 = "*"
 pandas = "*"
 requests = "*"
 pydantic = "*"
-scraper = {path = ".", editable = true}
+scraping_helper = {path = ".", editable = true}
 ruff = "*"
 
 [dev-packages]
