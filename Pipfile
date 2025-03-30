@@ -8,6 +8,9 @@ selenium = "*"
 bs4 = "*"
 pandas = "*"
 requests = "*"
+pydantic = "*"
+scraper = {path = ".", editable = true}
+ruff = "*"
 
 [dev-packages]
 pytest = "*"
