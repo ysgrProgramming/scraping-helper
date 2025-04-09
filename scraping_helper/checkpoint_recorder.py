@@ -3,7 +3,7 @@ from pathlib import Path
 
 
 class CheckpointRecorder:
-    checkpoint_path: Path = field(...)
+    checkpoint_path: Path
     checkpoints: set[str] = field(default_factory=set, init=False)
 
     def __post_init__(self) -> None:

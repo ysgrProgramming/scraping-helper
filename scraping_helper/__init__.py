@@ -1,4 +1,4 @@
-from .task import Task
-from .task_runner import TaskRunner
+from .task import Task, TaskConfig
+from .task_runner import TaskRunner, TaskRunnerConfig
 
-__all__ = ["Task", "TaskRunner"]
+__all__ = ["Task", "TaskConfig", "TaskRunner", "TaskRunnerConfig"]

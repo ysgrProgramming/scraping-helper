@@ -10,7 +10,7 @@ logger = getLogger(__name__)
 
 @dataclass
 class TaskConfig:
-    retry_count: int | None = field(default=-1, description="リトライ回数")
+    retry_count: int | None = field(default=-1)
 
     start_logging_level: int | None = field(default=logging.INFO)
     done_logging_level: int | None = field(default=logging.INFO)
@@ -20,8 +20,8 @@ class TaskConfig:
 
 @dataclass
 class Task(ABC):
-    name: str = field(..., description="タスク名")
-    config: TaskConfig = field(default=TaskConfig(), description="タスクの設定")
+    name: str
+    config: TaskConfig = field(default_factory=TaskConfig)
 
     @property
     def uid(self) -> str:

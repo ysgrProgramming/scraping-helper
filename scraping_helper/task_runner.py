@@ -13,7 +13,7 @@ logger = getLogger(__name__)
 @dataclass
 class TaskRunnerConfig:
     checkpoint_path: Path = field(default=Path("scraping_helper.ckpt"))
-    retry_count: int = field(default=-1, description="リトライ回数")
+    retry_count: int = field(default=-1)
 
     start_logging_level: int = field(default=logging.INFO)
     done_logging_level: int = field(default=logging.INFO)
@@ -25,7 +25,7 @@ class TaskRunnerConfig:
 class TaskRunner:
     """タスクを実行するクラス"""
 
-    config: TaskRunnerConfig = field(default=TaskRunnerConfig())
+    config: TaskRunnerConfig = field(default_factory=TaskRunnerConfig)
 
     def run(self, *args: Task) -> None:
         checkpoint_recorder = CheckpointRecorder(

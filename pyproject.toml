@@ -13,11 +13,11 @@ classifiers = [
 dynamic = ["version"]
 
 [tool.setuptools.packages.find]
-exclude = ["tests"]
+exclude = ["test/"]
 
 [tool.ruff]
 select = ["ALL"]
 ignore = ["T20", "D", "TC", "N", "DTZ"]
-
+exclude = ["test/"]
 [tool.ruff.pydocstyle]
 convention = "google"
