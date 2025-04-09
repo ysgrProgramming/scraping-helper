@@ -1,0 +1,48 @@
+name: Python CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  pytest:
+    name: Run Pytest
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Pipenv and Dependencies
+        run: |
+          pip install pipenv
+          pipenv install --dev
+
+      - name: Run Pytest
+        run: pipenv run pytest
+
+  ruff:
+    name: Run Ruff
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Pipenv and Dependencies
+        run: |
+          pip install pipenv
+          pipenv install --dev
+
+      - name: Run Ruff (Static Analysis)
+        run: pipenv run ruff check
