@@ -18,7 +18,7 @@ class TaskConfig:
     error_logging_level: int | None = field(default=logging.ERROR)
 
 
-@dataclass
+@dataclass(kw_only=True)
 class Task(ABC):
     name: str
     config: TaskConfig = field(default_factory=TaskConfig)
