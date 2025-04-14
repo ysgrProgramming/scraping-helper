@@ -1,7 +1,8 @@
-from dataclasses import field
+from dataclasses import dataclass, field
 from pathlib import Path
 
 
+@dataclass
 class CheckpointRecorder:
     checkpoint_path: Path
     checkpoints: set[str] = field(default_factory=set, init=False)
@@ -13,7 +14,6 @@ class CheckpointRecorder:
             self.load()
         else:
             self.checkpoint_path.touch()
-        return super().__post_init__()
 
     def load(self) -> None:
         with self.checkpoint_path.open("r", encoding="utf-8") as f:

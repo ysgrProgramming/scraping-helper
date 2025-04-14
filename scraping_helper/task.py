@@ -2,31 +2,30 @@ from __future__ import annotations
 
 import logging
 from abc import ABC, abstractmethod
-from dataclasses import dataclass, field
+from pydantic import BaseModel, Field
 from logging import getLogger
 
 logger = getLogger(__name__)
 
 
-@dataclass
-class TaskConfig:
-    retry_count: int | None = field(default=-1)
+class TaskConfig(BaseModel):
+    retry_count: int | None = Field(default=None, ge=-1)
+    ignore_error: bool | None = Field(default=None)
 
-    start_logging_level: int | None = field(default=logging.INFO)
-    done_logging_level: int | None = field(default=logging.INFO)
-    skip_logging_level: int | None = field(default=logging.DEBUG)
-    error_logging_level: int | None = field(default=logging.ERROR)
+    start_logging_level: int | None = Field(default=logging.INFO)
+    done_logging_level: int | None = Field(default=logging.INFO)
+    skip_logging_level: int | None = Field(default=logging.DEBUG)
+    error_logging_level: int | None = Field(default=logging.ERROR)
 
 
-@dataclass
-class Task(ABC):
+class Task(BaseModel, ABC):
     name: str
-    config: TaskConfig = field(default_factory=TaskConfig)
+    config: TaskConfig = Field(default_factory=TaskConfig)
 
     @property
     def uid(self) -> str:
         return f"{self.__class__.__name__}-{self.name}"
 
     @abstractmethod
-    def run(self) -> None:
+    def run(self) -> list[Task] | None:
         pass

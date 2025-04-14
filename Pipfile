@@ -6,7 +6,6 @@ name = "pypi"
 [packages]
 requests = "*"
 scraping_helper = {path = ".", editable = true}
-ruff = "*"
 
 [dev-packages]
 pytest = "*"
